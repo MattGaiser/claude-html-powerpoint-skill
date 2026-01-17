@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: white;
+      padding: 80px 100px;
+      overflow: hidden;
+    }
+
+    .header {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #667eea;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .column h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 3px solid;
+    }
+
+    .old h2 {
+      color: #999;
+      border-color: #ddd;
+    }
+
+    .new h2 {
+      color: #667eea;
+      border-color: #667eea;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .old .feature {
+      color: #666;
+    }
+
+    .new .feature {
+      color: #333;
+    }
+
+    .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .old .icon {
+      background: #f5f5f5;
+      color: #999;
+    }
+
+    .new .icon {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding-top: 100px;
+    }
+
+    .vs-badge {
+      width: 80px;
+      height: 80px;
+      background: #f8f9fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="section-label">The Solution</div>
+    <h1>HTML-First Presentations</h1>
+  </div>
+  <div class="comparison">
+    <div class="column old">
+      <h2>Traditional Way</h2>
+      <div class="feature-list">
+        <div class="feature">
+          <div class="icon">X</div>
+          <span>Manual drag-and-drop design</span>
+        </div>
+        <div class="feature">
+          <div class="icon">X</div>
+          <span>Binary file formats</span>
+        </div>
+        <div class="feature">
+          <div class="icon">X</div>
+          <span>Limited styling options</span>
+        </div>
+        <div class="feature">
+          <div class="icon">X</div>
+          <span>Hard to maintain consistency</span>
+        </div>
+        <div class="feature">
+          <div class="icon">X</div>
+          <span>No version control friendly</span>
+        </div>
+        <div class="feature">
+          <div class="icon">X</div>
+          <span>Difficult AI integration</span>
+        </div>
+      </div>
+    </div>
+    <div class="vs">
+      <div class="vs-badge">VS</div>
+    </div>
+    <div class="column new">
+      <h2>PowerPointGen</h2>
+      <div class="feature-list">
+        <div class="feature">
+          <div class="icon">+</div>
+          <span>Programmatic HTML/CSS design</span>
+        </div>
+        <div class="feature">
+          <div class="icon">+</div>
+          <span>Text-based source files</span>
+        </div>
+        <div class="feature">
+          <div class="icon">+</div>
+          <span>Full CSS3 power</span>
+        </div>
+        <div class="feature">
+          <div class="icon">+</div>
+          <span>Template-driven consistency</span>
+        </div>
+        <div class="feature">
+          <div class="icon">+</div>
+          <span>Git-friendly workflow</span>
+        </div>
+        <div class="feature">
+          <div class="icon">+</div>
+          <span>Perfect for AI iteration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

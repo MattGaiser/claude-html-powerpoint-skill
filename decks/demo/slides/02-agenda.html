@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #ffffff;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 80px;
+      background: linear-gradient(180deg, #1a1a2e 0%, #0f3460 100%);
+    }
+
+    .content {
+      flex: 1;
+      padding: 80px 100px;
+    }
+
+    .header {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e94560;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 64px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .agenda-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .agenda-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 32px 40px;
+      background: #f8f9fa;
+      border-radius: 16px;
+      border-left: 6px solid #e94560;
+    }
+
+    .agenda-number {
+      font-size: 48px;
+      font-weight: 800;
+      color: #e94560;
+      min-width: 80px;
+    }
+
+    .agenda-text h3 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .agenda-text p {
+      font-size: 18px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar"></div>
+  <div class="content">
+    <div class="header">
+      <div class="section-label">Overview</div>
+      <h1>Today's Agenda</h1>
+    </div>
+    <div class="agenda-list">
+      <div class="agenda-item">
+        <div class="agenda-number">01</div>
+        <div class="agenda-text">
+          <h3>The Problem</h3>
+          <p>Why traditional PowerPoint workflows don't scale</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-number">02</div>
+        <div class="agenda-text">
+          <h3>Our Solution</h3>
+          <p>HTML-first approach to presentation design</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-number">03</div>
+        <div class="agenda-text">
+          <h3>Technical Architecture</h3>
+          <p>How the rendering pipeline works</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-number">04</div>
+        <div class="agenda-text">
+          <h3>Next Steps</h3>
+          <p>Roadmap and future enhancements</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

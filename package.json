@@ -1,0 +1,31 @@
+{
+  "name": "powerpoint-gen",
+  "version": "1.0.0",
+  "description": "Generate high-fidelity PowerPoint slides from HTML",
+  "main": "src/index.js",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MattGaiser/claude-powerpoint-gen"
+  },
+  "keywords": [
+    "powerpoint",
+    "pptx",
+    "html",
+    "slides",
+    "presentation",
+    "generator"
+  ],
+  "scripts": {
+    "generate": "node src/index.js",
+    "demo": "node src/index.js demo"
+  },
+  "dependencies": {
+    "@google/genai": "^1.36.0",
+    "dotenv": "^17.2.3",
+    "officeparser": "^6.0.4",
+    "pptxgenjs": "^3.12.0",
+    "puppeteer": "^21.6.0"
+  }
+}

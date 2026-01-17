@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: white;
+      padding: 80px 100px;
+      overflow: hidden;
+    }
+
+    .header {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #667eea;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .timeline {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 64px;
+      left: 100px;
+      right: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      border-radius: 2px;
+    }
+
+    .phase {
+      flex: 1;
+      text-align: center;
+      position: relative;
+    }
+
+    .phase-dot {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: white;
+      border: 4px solid #667eea;
+      margin: 0 auto 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #667eea;
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase:first-child .phase-dot {
+      background: #667eea;
+      color: white;
+    }
+
+    .phase-content {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 32px;
+      margin: 0 16px;
+    }
+
+    .phase-content h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+    }
+
+    .phase-content ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .phase-content li {
+      font-size: 16px;
+      color: #666;
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .phase-content li::before {
+      content: '&#8226;';
+      position: absolute;
+      left: 0;
+      color: #667eea;
+    }
+
+    .phase-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #999;
+      margin-top: 24px;
+    }
+
+    .phase:first-child .phase-label {
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="section-label">What's Next</div>
+    <h1>Roadmap</h1>
+  </div>
+  <div class="timeline">
+    <div class="phase">
+      <div class="phase-dot">1</div>
+      <div class="phase-content">
+        <h3>Foundation</h3>
+        <ul>
+          <li>HTML to image rendering</li>
+          <li>PPTX generation</li>
+          <li>Basic CLI interface</li>
+          <li>Demo templates</li>
+        </ul>
+      </div>
+      <div class="phase-label">Current</div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot">2</div>
+      <div class="phase-content">
+        <h3>Templates</h3>
+        <ul>
+          <li>Template library</li>
+          <li>Theme system</li>
+          <li>Component reuse</li>
+          <li>Variable injection</li>
+        </ul>
+      </div>
+      <div class="phase-label">Next</div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot">3</div>
+      <div class="phase-content">
+        <h3>AI Integration</h3>
+        <ul>
+          <li>AI image generation</li>
+          <li>Content suggestions</li>
+          <li>Auto-layout</li>
+          <li>Style matching</li>
+        </ul>
+      </div>
+      <div class="phase-label">Future</div>
+    </div>
+    <div class="phase">
+      <div class="phase-dot">4</div>
+      <div class="phase-content">
+        <h3>Platform</h3>
+        <ul>
+          <li>Web interface</li>
+          <li>Collaboration</li>
+          <li>Asset library</li>
+          <li>Export options</li>
+        </ul>
+      </div>
+      <div class="phase-label">Vision</div>
+    </div>
+  </div>
+</body>
+</html>

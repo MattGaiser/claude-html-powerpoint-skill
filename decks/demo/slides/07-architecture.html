@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+
+    body {
+      width: 1920px;
+      height: 1080px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #1a1a2e;
+      padding: 80px 100px;
+      overflow: hidden;
+    }
+
+    .header {
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e94560;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: 56px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .pipeline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .step {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .step-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .step:nth-child(1) .step-icon { background: linear-gradient(135deg, #ff6b6b, #ee5a5a); }
+    .step:nth-child(2) .step-icon { background: linear-gradient(135deg, #ffd93d, #f0c929); }
+    .step:nth-child(3) .step-icon { background: linear-gradient(135deg, #6bcb77, #5ab868); }
+    .step:nth-child(4) .step-icon { background: linear-gradient(135deg, #4d96ff, #3d86ef); }
+
+    .step h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .step p {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
+    }
+
+    .step code {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      font-size: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-top: 16px;
+      color: #ffd93d;
+    }
+
+    .arrow {
+      font-size: 40px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="section-label">How It Works</div>
+    <h1>Technical Architecture</h1>
+  </div>
+  <div class="pipeline">
+    <div class="step">
+      <div class="step-icon">&lt;/&gt;</div>
+      <h3>HTML Slides</h3>
+      <p>Design slides with full HTML/CSS power</p>
+      <code>slides/*.html</code>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="step">
+      <div class="step-icon">&#128247;</div>
+      <h3>Puppeteer</h3>
+      <p>Render HTML to high-res PNG images</p>
+      <code>1920x1080 @2x</code>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="step">
+      <div class="step-icon">&#128230;</div>
+      <h3>PptxGenJS</h3>
+      <p>Package images into PPTX format</p>
+      <code>.pptx output</code>
+    </div>
+    <div class="arrow">&#8594;</div>
+    <div class="step">
+      <div class="step-icon">&#9989;</div>
+      <h3>Done!</h3>
+      <p>Ready to present anywhere</p>
+      <code>100% compatible</code>
+    </div>
+  </div>
+</body>
+</html>
