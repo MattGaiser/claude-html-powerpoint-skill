@@ -9,6 +9,33 @@ const ROOT_DIR = path.join(__dirname, '..');
 const DECKS_DIR = path.join(ROOT_DIR, 'decks');
 
 /**
+ * Parse CLI flags from args array
+ */
+function parseFlags(args) {
+  const flags = { positional: [] };
+
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--force') {
+      flags.force = true;
+    } else if (args[i] === '--only') {
+      flags.only = [];
+      // Collect all following non-flag args as slide names
+      while (i + 1 < args.length && !args[i + 1].startsWith('--')) {
+        flags.only.push(args[++i]);
+      }
+    } else if (args[i] === '--no-compress') {
+      flags.compress = false;
+    } else if (args[i] === '--concurrency') {
+      flags.concurrency = parseInt(args[++i], 10);
+    } else if (!args[i].startsWith('--')) {
+      flags.positional.push(args[i]);
+    }
+  }
+
+  return flags;
+}
+
+/**
  * Generate a PPTX from a deck folder
  * @param {string} deckName - Name of the deck folder
  * @param {object} options - Generation options
@@ -50,14 +77,23 @@ async function generateDeck(deckName, options = {}) {
   console.log('--- Rendering slides to images ---\n');
   const renderer = new SlideRenderer({
     width: options.width || 1920,
-    height: options.height || 1080
+    height: options.height || 1080,
+    concurrency: options.concurrency || 4,
+    compress: options.compress !== false
   });
 
   await renderer.init();
-  const imagePaths = await renderer.renderSlides(htmlFiles, outputPath);
+
+  const start = performance.now();
+  const imagePaths = await renderer.renderSlides(htmlFiles, outputPath, {
+    force: options.force || false,
+    only: options.only || null
+  });
+  const elapsed = ((performance.now() - start) / 1000).toFixed(1);
+
   await renderer.close();
 
-  console.log(`\nRendered ${imagePaths.length} images\n`);
+  console.log(`\nRendered ${imagePaths.length} images in ${elapsed}s\n`);
 
   // Load deck config if exists
   let config = { title: deckName };
@@ -115,14 +151,22 @@ async function listDecks() {
 
 // CLI
 const args = process.argv.slice(2);
+const flags = parseFlags(args);
 
-if (args.length === 0) {
+if (flags.positional.length === 0) {
   console.log('PowerPointGen - Generate PPTX from HTML slides\n');
   console.log('Usage:');
-  console.log('  npm run generate <deck-name>  Generate a specific deck');
-  console.log('  npm run demo                  Generate the demo deck');
+  console.log('  npm run generate <deck-name>           Generate a specific deck');
+  console.log('  npm run generate <deck-name> --force    Re-render all slides (skip cache)');
+  console.log('  npm run generate <deck-name> --only 03-stats 05-quote');
+  console.log('                                          Only re-render specific slides');
+  console.log('  npm run generate <deck-name> --no-compress');
+  console.log('                                          Skip Sharp compression');
+  console.log('  npm run generate <deck-name> --concurrency 8');
+  console.log('                                          Parallel render limit (default: 4)');
+  console.log('  npm run demo                            Generate the demo deck');
   await listDecks();
 } else {
-  const deckName = args[0];
-  await generateDeck(deckName);
+  const deckName = flags.positional[0];
+  await generateDeck(deckName, flags);
 }

@@ -53,10 +53,12 @@ When a user asks to create a presentation:
 
 1. **Determine the deck name** from the topic (kebab-case, e.g., "q4-results", "product-launch")
 
-2. **Create the folder structure:**
+2. **Create the folder structure in the repo root** (NOT in ~/.claude or settings):
    ```bash
    mkdir -p decks/<deck-name>/slides decks/<deck-name>/context
    ```
+
+   The `decks/` folder should be at the root of the repository where Claude was initialized.
 
 3. **Ask if user has context documents** using AskUserQuestion:
    ```
@@ -100,25 +102,61 @@ When a user asks to create a presentation:
 
 12. **Deliver the output** path to the user
 
+### Iteration: Updating Individual Slides
+
+When revising slides after the initial build, use targeted commands to avoid re-rendering the entire deck:
+
+- **Preview a single slide** (renders to PNG, opens it):
+  ```bash
+  npm run preview <deck-name> <slide-name>
+  # Example: npm run preview demo 03-stats
+  ```
+
+- **Re-render only changed slides** (automatic via cache):
+  ```bash
+  npm run generate <deck-name>
+  # Only slides whose HTML changed since last build will re-render
+  ```
+
+- **Force re-render specific slides**:
+  ```bash
+  npm run generate -- <deck-name> --only 03-stats 05-quote
+  ```
+
+- **Force re-render everything** (skip cache):
+  ```bash
+  npm run generate -- <deck-name> --force
+  ```
+
 ---
 
 ## Project Structure
 
+**IMPORTANT:** All output must be placed in the repository where Claude is initialized, NOT in ~/.claude or any other location. Use paths relative to the repo root.
+
 ```
-decks/
-  <deck-name>/
-    config.json        # Title, author metadata
-    context/           # Reference documents (created in Phase 1)
-      brief.md         # Project brief, requirements
-      data.csv         # Data to visualize
-      notes.txt        # Additional context
-      *.pdf, *.md, etc # Any reference materials
-    slides/
-      01-title.html    # Slides numbered for ordering
-      02-agenda.html
-      ...
-    output/            # Generated PNGs and .pptx
+<repo-root>/
+  decks/
+    <deck-name>/
+      config.json        # Title, author metadata
+      context/           # Reference documents (created in Phase 1)
+        brief.md         # Project brief, requirements
+        data.csv         # Data to visualize
+        notes.txt        # Additional context
+        *.pdf, *.md, etc # Any reference materials
+      slides/
+        01-title.html    # Slides numbered for ordering
+        02-agenda.html
+        ...
+      output/            # Generated PNGs and .pptx
 ```
+
+When creating folders, always use relative paths from the repo root:
+```bash
+mkdir -p decks/<deck-name>/slides decks/<deck-name>/context
+```
+
+Never use absolute paths like `~/.claude/` or `$HOME/.claude/` for output.
 
 ## Context Documents
 
@@ -140,9 +178,16 @@ When context exists, incorporate it into your plan:
 ## How This Project Works
 
 1. **HTML Slides** → Each slide is a standalone HTML file with embedded CSS (1920x1080)
-2. **Puppeteer** → Renders HTML to high-res PNG images (2x for crisp display)
-3. **PptxGenJS** → Packages images into a .pptx file
-4. **Nano Banana Pro** → Optional AI image generation for diagrams/illustrations
+2. **Puppeteer** → Renders HTML to PNG images (2x capture, Sharp-compressed to 1920x1080)
+3. **PptxGenJS** → Packages optimized images into a .pptx file
+4. **Gemini** → Optional AI image generation for diagrams/illustrations
+
+### Performance Features
+
+- **Parallel rendering** — Up to 4 slides rendered concurrently (configurable via `--concurrency`)
+- **Content-hash caching** — Only re-renders slides whose HTML has changed (cache stored in `output/.render-cache.json`)
+- **Sharp compression** — Screenshots are optimized from 3840x2160 to 1920x1080 with max PNG compression, reducing file sizes ~10x
+- **Selective rendering** — Use `--only` to re-render specific slides without touching the rest
 
 ## Creating HTML Slides
 

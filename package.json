@@ -19,13 +19,19 @@
   ],
   "scripts": {
     "generate": "node src/index.js",
-    "demo": "node src/index.js demo"
+    "demo": "node src/index.js demo",
+    "preview": "node src/preview.js",
+    "read-pptx": "node src/readPptx.js",
+    "generate-image": "node src/generateImage.js"
   },
   "dependencies": {
     "@google/genai": "^1.36.0",
+    "adm-zip": "^0.5.16",
+    "docx": "^9.5.1",
     "dotenv": "^17.2.3",
     "officeparser": "^6.0.4",
     "pptxgenjs": "^3.12.0",
-    "puppeteer": "^21.6.0"
+    "puppeteer": "^21.6.0",
+    "sharp": "^0.34.5"
   }
 }
